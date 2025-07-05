@@ -1,9 +1,11 @@
 import { definitions,pics } from "./LandingLogic";
 import swal from 'sweetalert2'
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 
 
 const Landing = () => {
+
+  const { scrollProgress } = useScroll();
 
   const handleClick = () => {
     swal.fire({
@@ -18,7 +20,25 @@ const Landing = () => {
 
   return (
     <div>
-      <h1 className="text-red-400 font-bold text-5xl text-center mt-10">WELCOME TO VIBLY ANONYMOUS</h1>
+      <motion.div 
+        id="scroll-indicator"
+        style={{
+          scaleX: scrollProgress, 
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 10,
+          originX: 0,
+          backgroundColor: 'green'
+        }}
+      ></motion.div>
+      <motion.h1 className="text-red-400 font-bold text-5xl text-center mt-10"
+        initial={{ y: -100, opacity: 0}}
+        animate={{ y: 0, opacity: 1, rotate: 360}}
+        transition={{ duration: 0.8, ease: 'easeOut'}}
+      >
+        WELCOME TO VIBLY ANONYMOUS</motion.h1>
       <div className="bod m-4 overflow-hidden pr-10 text-white flex mt-50 p-15">
         <div className="w-[50%] gap-15 flex flex-col">
           <h2 className="text-4xl font-black font-[helvetica] text-center underline text-red-500">That secret you've being Hiding</h2>
