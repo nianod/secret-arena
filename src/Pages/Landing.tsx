@@ -5,7 +5,7 @@ import { motion, useScroll } from "framer-motion";
 
 const Landing = () => {
 
-  const { scrollProgress } = useScroll();
+  const { scrollYProgress } = useScroll();
 
   const handleClick = () => {
     swal.fire({
@@ -23,14 +23,15 @@ const Landing = () => {
       <motion.div 
         id="scroll-indicator"
         style={{
-          scaleX: scrollProgress, 
+          scaleX: scrollYProgress, 
           position: "fixed",
           top: 0,
           left: 0,
           right: 0,
-          height: 10,
+          height: 5,
           originX: 0,
-          backgroundColor: 'green'
+          backgroundColor: 'green',
+          zIndex: 10
         }}
       ></motion.div>
       <motion.h1 className="text-red-400 font-bold text-5xl text-center mt-10"
