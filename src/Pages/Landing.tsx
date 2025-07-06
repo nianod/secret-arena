@@ -3,9 +3,14 @@ import swal from 'sweetalert2'
 import { motion, useScroll } from "framer-motion";
 import Terms from "../Components/Terms";
 import GetStarted from "../Components/GetStarted";
+import { useState } from "react";
 
 
 const Landing = () => {
+
+  const [check, setCheck] = useState(false)
+  const [autoCheck, setAutoCheck] = useState(true)
+
 
   const { scrollYProgress } = useScroll();
 
@@ -76,15 +81,21 @@ const Landing = () => {
         </div>
         <hr className="bod text-white mt-3 mb-4 w-[50%] m-auto font-black"/>
       </div>
-      <div className="flex align-center gap-1">
-        <input type="checkbox" checked />
+      <div className="m-3 flex align-center gap-1">
+        <input type="checkbox"
+          onChange={(e) => setAutoCheck(e.target.checked)}
+          checked={autoCheck}
+         />
         <p className="text-white">I Have read all the Terms and Conditions</p>
       </div>
-      <div className="flex align-center gap-1">
-        <input type="checkbox" />
+      <div className="m-3 flex align-center gap-1">
+        <input type="checkbox"
+          onChange={(e) => setCheck(e.target.checked)}
+          checked={check}
+        />
         <p className="text-white">I Accept Terms and Conditions</p>
       </div>
-      <GetStarted />
+      <span className="flex justify-center p-5"><GetStarted /></span>
     </div>
   )
 }

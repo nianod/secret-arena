@@ -1,12 +1,14 @@
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+
 const GetStarted = () => {
     
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     
     const handleStart = (e: React.FormEvent) => {
         e.preventDefault()
-        // navigate('/dashboard')
-        alert("fbuyasvk dj")
+        navigate('/dashboard')
+       
     }
 
   return (
