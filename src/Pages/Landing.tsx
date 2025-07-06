@@ -20,7 +20,7 @@ const Landing = () => {
       text: "Your identity here is completely anonymous",
       icon: "warning",
       confirmButtonText: 'okay',
-      background: 'white',
+      background: 'blue',
       color: 'black'
     })
   }
@@ -44,7 +44,7 @@ const Landing = () => {
       ></motion.div>
       <motion.h1 className="text-red-400 font-bold text-5xl text-center mt-10"
         initial={{ y: -100, opacity: 0}}
-        animate={{ y: 0, opacity: 1, rotate: 360}}
+        animate={{ y: 0, opacity: 1}}
         transition={{ duration: 0.8, ease: 'easeOut'}}
       >
         WELCOME TO VIBLY ANONYMOUS</motion.h1>

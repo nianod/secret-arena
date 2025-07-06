@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
 const GetStarted = () => {
     
+    const [error, setError] = useState("")
+
     const navigate = useNavigate()
     
     const handleStart = (e: React.FormEvent) => {
