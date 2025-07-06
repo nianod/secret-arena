@@ -1,6 +1,6 @@
 import { definitions,pics } from "./LandingLogic";
 import swal from 'sweetalert2'
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll,  } from "framer-motion";
 import Terms from "../Components/Terms";
 import GetStarted from "../Components/GetStarted";
 import { useState } from "react";
@@ -49,7 +49,7 @@ const Landing = () => {
       >
         WELCOME TO VIBLY ANONYMOUS</motion.h1>
         <div className="flex justify-center mt-12">
-          <GetStarted />
+          <GetStarted checkbox={check}/>
         </div>
       <motion.div style={{ x: -20 }} className="bod m-4 overflow-hidden pr-10 text-white flex mt-50 p-15">
         <div className="w-[50%] gap-15 flex flex-col">
@@ -95,7 +95,7 @@ const Landing = () => {
         />
         <p className="text-white">I Accept Terms and Conditions</p>
       </div>
-      <span className="flex justify-center p-5"><GetStarted /></span>
+      <span className="flex justify-center p-5"><GetStarted checkbox={check} /></span>
     </div>
   )
 }
