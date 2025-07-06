@@ -2,6 +2,7 @@ import { definitions,pics } from "./LandingLogic";
 import swal from 'sweetalert2'
 import { motion, useScroll } from "framer-motion";
 import Terms from "../Components/Terms";
+import GetStarted from "../Components/GetStarted";
 
 
 const Landing = () => {
@@ -18,6 +19,7 @@ const Landing = () => {
       color: 'black'
     })
   }
+
 
   return (
     <div>
@@ -41,6 +43,9 @@ const Landing = () => {
         transition={{ duration: 0.8, ease: 'easeOut'}}
       >
         WELCOME TO VIBLY ANONYMOUS</motion.h1>
+        <div className="flex justify-center mt-12">
+          <GetStarted />
+        </div>
       <motion.div style={{ x: -20 }} className="bod m-4 overflow-hidden pr-10 text-white flex mt-50 p-15">
         <div className="w-[50%] gap-15 flex flex-col">
           <h2 className="text-4xl font-black font-[helvetica] text-center underline text-red-500">That secret you've being Hiding</h2>
@@ -69,7 +74,17 @@ const Landing = () => {
         <div>
           <Terms />
         </div>
+        <hr className="bod text-white mt-3 mb-4 w-[50%] m-auto font-black"/>
       </div>
+      <div className="flex align-center gap-1">
+        <input type="checkbox" checked />
+        <p className="text-white">I Have read all the Terms and Conditions</p>
+      </div>
+      <div className="flex align-center gap-1">
+        <input type="checkbox" />
+        <p className="text-white">I Accept Terms and Conditions</p>
+      </div>
+      <GetStarted />
     </div>
   )
 }
