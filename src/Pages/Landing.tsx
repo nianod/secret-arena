@@ -47,7 +47,8 @@ const Landing = () => {
         animate={{ y: 0, opacity: 1}}
         transition={{ duration: 0.8, ease: 'easeOut'}}
       >
-        WELCOME TO VIBLY ANONYMOUS</motion.h1>
+        WELCOME TO VIBLY ANONYMOUS
+      </motion.h1>
         <div className="flex justify-center mt-12">
           <GetStarted checkbox={check}/>
         </div>
