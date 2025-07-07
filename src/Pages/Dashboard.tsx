@@ -20,10 +20,10 @@ const Dashboard = () => {
           <div className="bg-white p-6 rounded-lg relative shadow-lg">
             <button
               onClick={() => setShowPostField(false)}
-              className="absolute top-2 right-2 text-red-500 font-bold"
+              className="absolute top-2 right-2 text-2xl text-red-500 font-bold"
               title="Cancel"
             >
-              ✖
+              X
             </button>
             <PostField />
           </div>
