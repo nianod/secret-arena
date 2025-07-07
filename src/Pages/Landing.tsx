@@ -20,7 +20,7 @@ const Landing = () => {
       text: "Your identity here is completely anonymous",
       icon: "warning",
       confirmButtonText: 'okay',
-      background: 'blue',
+      background: 'white',
       color: 'black'
     })
   }

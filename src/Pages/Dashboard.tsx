@@ -31,6 +31,7 @@ const Dashboard = () => {
         setLoading(false)
       } catch (err) {
         console.error("There was an error: ", err)
+        setError("Failed!")
         setLoading(false)
       }
     }
@@ -55,16 +56,16 @@ const Dashboard = () => {
       {/* Mapping of Posted Secrets */}
       <div className="flex flex-wrap gap-5 mt-4 p-4">
         {loading ? (
-          <p>Loading Reveals...</p>
+          <p className="text-white flex justify-center text-xl">Loading Reveals...</p>
         ) : error ? (
           <p>{error}</p>
         ) : revealed.length === 0 ? (
-          <p>No Reveals Available.</p>
+          <p className="text-white flex justify-center text-xl">No Reveals Available.</p>
         ) : (
           revealed.map((post) => (
             <div key={post.id} className="w-[104vh] mb-4 p-4 bg-gray-100 rounded-lg">
-              <h2 className="font-bold">Posted by: {post.name}</h2>
-              <p className="my-2">{post.description}</p>
+              <h2 className="font-bold">Posted by: <span className="font-semibold">{post.name}</span> <i className="font-normal text-gray-400">Names here are anonymous</i></h2>
+              <p className="my-2"><span className="font-semibold">Secret:</span> {post.description}</p>
               {post.created_at && (
                 <span className="text-sm text-gray-500">
                   Posted on: {new Date(post.created_at).toLocaleString()}
