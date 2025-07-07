@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string>("")
 
-  useEffect(() => {
+  
     const fetchPosts = async () => {
       try {
         setLoading(true)
@@ -34,8 +34,9 @@ const Dashboard = () => {
         setLoading(false)
       }
     }
-    fetchPosts()
-  }, [])
+    useEffect(() => {
+       fetchPosts()
+    }, [])
 
   return (
     <div className="relative">
@@ -84,7 +85,9 @@ const Dashboard = () => {
             >
               X
             </button>
-            <PostField />
+            <PostField 
+            closeModal = {() => setShowPostField(false)}
+            onPostSuccess={fetchPosts}/>
           </div>
         </div>
       )}

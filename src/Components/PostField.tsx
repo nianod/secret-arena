@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { supabase } from "../Supabase/SupabaseClient"
 
-const PostField = () => {
+const PostField = ({ onPostSuccess, closeModal }: { onPostSuccess?: () => void, closeModal?: () => void}) => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [loading, setLoading] = useState(false)
@@ -32,6 +32,9 @@ const PostField = () => {
             console.log("success inserting :", data)
             setName('')
             setDescription('')
+           if(onPostSuccess) onPostSuccess()
+            if(closeModal) closeModal()
+            
           }
 
         } catch (err) {
