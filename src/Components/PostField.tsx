@@ -1,13 +1,42 @@
 import React, { useState } from "react"
+import { supabase } from "../Supabase/SupabaseClient"
 
 const PostField = () => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
 
-    const handleSubmit = (e: React.FormEvent) => {
+    //Inserting Data to Backend
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
+
+        try {
+          const { data: { user } } = await supabase.auth.getUser()
+
+          const sendData = {
+            name: name,
+            description: description
+          }
+
+          const { data, error } = await supabase 
+          .from('posts')
+          .insert([sendData])
+          .select()
+          .single()
+
+          if(error) {
+            console.log("There was an error: ", error.message)
+            setError('Failed to post')
+          } else {
+            console.log("success")
+          }
+
+        } catch (err) {
+          setError("error.messag")
+        }
+
     }
 
   return (
@@ -33,10 +62,13 @@ const PostField = () => {
         >
 
         </textarea>
+        {error && (
+          <p className="text-red-600 font-semibold">{error}</p>
+        )}
         <div>
             <button 
              disabled={loading}
-             className={`bg-blue-500 p-2 rounded text-white font-bold hover:bg-blue-400 transition ${loading ? 'opcaity-60 cursor-not-allowed ' : "cursor-pointer"}`}
+             className={`bg-blue-500 p-2 rounded w-full text-white font-bold hover:bg-blue-400 transition ${loading ? 'opcaity-60 cursor-not-allowed ' : "cursor-pointer"}`}
              type="submit"
             >
               {loading ? "Sharing..." : "Share"}
