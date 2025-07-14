@@ -6,6 +6,7 @@ const PostField = ({ onPostSuccess, closeModal }: { onPostSuccess?: () => void, 
     const [description, setDescription] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
+    const [time, setTime] = useState('')
 
     //Inserting Data to Backend
     const handleSubmit = async (e: React.FormEvent) => {
@@ -64,8 +65,21 @@ const PostField = ({ onPostSuccess, closeModal }: { onPostSuccess?: () => void, 
          onChange={(e) => setDescription(e.target.value)}
          required
         >
-
         </textarea>
+         <label>Screen Time</label>
+        <select name="screen-time"
+          id="category"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          required
+          className="focus:outline-none border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="" disabled>Remove your post after-</option>
+          <option value="8 hours">8 hours</option>
+          <option value="1 day">24 day</option>
+          <option value="2 days">2 days</option>
+          <option value="3 days">3 days</option>
+        </select>
         {error && (
           <p className="text-red-600 font-semibold">{error}</p>
         )}
