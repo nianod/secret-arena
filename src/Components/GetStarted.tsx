@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+interface getStartedProps {
+  checkbox: boolean
+}
 
-const GetStarted = ({ checkbox } : { checkbox: boolean}) => {
+const GetStarted = ({ checkbox } : getStartedProps) => {
     
     const [error, setError] = useState("")
 
