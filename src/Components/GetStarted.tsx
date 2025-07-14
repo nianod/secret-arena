@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
-const GetStarted = ({ checkbox }) => {
+const GetStarted = ({ checkbox } : { checkbox: boolean}) => {
     
     const [error, setError] = useState("")
 

@@ -41,6 +41,7 @@ const Landing = () => {
           backgroundColor: 'green',
           zIndex: 10
         }}
+        
       ></motion.div>
       <motion.h1 className="text-red-400 font-bold text-5xl text-center mt-10"
         initial={{ y: -100, opacity: 0}}
