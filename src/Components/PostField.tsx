@@ -76,7 +76,7 @@ const PostField = ({ onPostSuccess, closeModal }: { onPostSuccess?: () => void, 
         >
           <option value="" disabled>Remove your post after-</option>
           <option value="8 hours">8 hours</option>
-          <option value="1 day">24 day</option>
+          <option value="1 day">24 hours</option>
           <option value="2 days">2 days</option>
           <option value="3 days">3 days</option>
         </select>
