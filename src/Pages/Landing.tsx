@@ -52,7 +52,11 @@ const Landing = () => {
         <div className="flex justify-center mt-12">
           <GetStarted checkbox={check}/>
         </div>
-      <motion.div style={{ x: -20 }} className="bod m-4 overflow-hidden pr-10 text-white flex mt-50 p-15">
+      <motion.div className="bod m-4 overflow-hidden pr-10 text-white flex mt-50 p-15"
+        initial={{x: 100, opacity: 0}}
+        animate={{x: 0, opacity: 1}}
+        transition={{duration: 0.8, ease: 'easeOut'}}
+      >
         <div className="w-[50%] gap-15 flex flex-col">
           <h2 className="text-4xl font-black font-[helvetica] text-center underline text-red-500">That secret you've being Hiding</h2>
           <p className="text-center text-3xl font-[oswald]">{definitions.speakUp}</p>
@@ -63,7 +67,11 @@ const Landing = () => {
           src={pics.img1} alt="secret" />
         </div>
       </motion.div>
-      <div className="bod m-3 text-white flex gap-10 mt-50 p-10">
+      <motion.div className="bod m-3 text-white flex gap-10 mt-50 p-10"
+        initial={{x: 100, opacity: 0}}
+        animate={{x: 0, opacity: 1}}
+        transition={{duration: 0.8, ease: 'easeOut'}}      
+      >
         <div className="w-[50%]">
           <img
           className="w-120"
@@ -74,7 +82,7 @@ const Landing = () => {
           <p className="text-center">{definitions.identity}</p>
           <button onClick={handleClick} className="bg-[linear-gradient(to_right,_red,_blue)] text-white px-4 hover:scale-105 transition w-fit m-auto p-1 rounded cursor-pointer">Learn more</button>
         </div>
-      </div>
+      </motion.div>
       <div>
         <h1 className="text-red-500 text-4xl font-bold underline font-[sans-serif] text-center mt-12">HOW IT WORKS</h1>
         <div>
