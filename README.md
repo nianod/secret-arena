@@ -1,6 +1,6 @@
 # 🕶️ Vibbly – Speak Freely. Stay Anonymous.
 
-Vibbly is a modern anonymous posting app that provides a safe, judgment-free space for people to share thoughts, questions, confessions, and ideas — without revealing their identity.
+Vibbly is a modern anonymous posting app that provides a safe, judgment-free space for people to share thoughts, questions, confessions, and ideas without revealing their identity.
 
 Built to encourage free expression and emotional honesty, especially among students and young adults.
 
@@ -25,18 +25,18 @@ Built to encourage free expression and emotional honesty, especially among stude
 
 ## ⚙️ Tech Stack
 
-| Frontend      | Backend       | Realtime & DB  | Styling        |
-| ------------- | ------------- | -------------- | -------------- |
-| React.js      | Supabase Edge Functions | Supabase       | Tailwind CSS   |
+| Frontend      | Backend       | Realtime & DB  | Styling        | Animations |
+| ------------- | ------------- | -------------- | -------------- | ---------- |
+| React.js      | Supabase Edge Functions | Supabase       | Tailwind CSS   | Framer Motion |
 
 ---
 ### Go live 😎👋
-<a href="https://secret-arena-sand.vercel.app/">See Me</a>
+<a href="https://secret-arena-sand.vercel.app/">Live Review</a>
 
-## 🛠️ Installation
 
-```bash
-git clone https://github.com/your-username/vibbly.git
-cd vibbly
-npm install
-npm run dev
+## 🔮 Future Enhancements
+- 📱 Mobile-Friendly UI
+- 💬 Anonymous Comments
+- 🏷️ Topic-Based Filtering
+- 🚨 Reporting & Moderation Tools
+- 🔐 Anonymous Authentication
