@@ -27,7 +27,7 @@ Built to encourage free expression and emotional honesty, especially among stude
 
 | Frontend      | Backend       | Realtime & DB  | Styling        | Animations |
 | ------------- | ------------- | -------------- | -------------- | ---------- |
-| React.js      | Supabase Edge Functions | Supabase       | Tailwind CSS   | Framer Motion |
+| React.ts      | Supabase Edge Functions | Supabase       | Tailwind CSS   | Framer Motion |
 
 ---
 ### Go live 😎👋
