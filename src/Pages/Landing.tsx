@@ -75,11 +75,12 @@ const Landing = () => {
           />
         </div>
       </motion.div>
+      <div className="bod overflow-hidden m-3 p-4">
           <h2 className="text-2xl md:text-4xl font-black text-center font-['helvetica'] underline text-red-500 w-full md:w-auto">
             Worrying of Exposure??
           </h2>
         <motion.div          
-          className="bod m-3 p-4 overflow-hidden text-white flex flex-col md:flex-row items-center"
+          className="text-white flex flex-col md:flex-row items-center"
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}      
@@ -101,6 +102,7 @@ const Landing = () => {
             </button>
           </div>
       </motion.div>
+    </div>  
       <div>
         <h1 className="text-red-500 text-4xl font-bold underline font-[sans-serif] text-center mt-12">HOW IT WORKS</h1>
         <div>
