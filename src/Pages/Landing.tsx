@@ -53,7 +53,7 @@ const Landing = () => {
         <div className="flex justify-center mt-12">
           <GetStarted checkbox={check}/>
         </div>
-      <motion.div className="bod m-4 overflow-hidden pr-10 text-white flex mt-50 p-15"
+      {/* <motion.div className="bod m-4 overflow-hidden pr-10 text-white flex mt-50 p-15"
         initial={{x: 100, opacity: 0}}
         animate={{x: 0, opacity: 1}}
         transition={{duration: 0.8, ease: 'easeOut'}}
@@ -66,6 +66,28 @@ const Landing = () => {
           <img
           className="object-cover w-150 h-90"
           src={pics.img1} alt="secret" />
+        </div>
+      </motion.div> */}
+      <motion.div 
+        className="bod m-4 p-4 overflow-hidden text-white flex flex-col md:flex-row"
+        initial={{x: 100, opacity: 0}}
+        animate={{x: 0, opacity: 1}}
+        transition={{duration: 0.8, ease: 'easeOut'}}
+      >
+        <div className="w-full md:w-1/2 flex flex-col gap-4">
+          <h2 className="text-2xl sm:text-4xl font-black font-['helvetica'] text-center underline text-red-500">
+            That secret you've been hiding
+          </h2>
+          <p className="text-center text-xl sm:text-3xl font-['oswald']">
+            {definitions.speakUp}
+          </p>
+        </div>
+        <div className="w-full md:w-1/2 mt-4 md:mt-0">
+          <img
+            className="object-cover w-full h-auto max-w-[300px] mx-auto md:max-w-none md:w-full md:h-[360px]"
+            src={pics.img1} 
+            alt="secret" 
+          />
         </div>
       </motion.div>
       <motion.div className="bod m-3 text-white flex gap-10 mt-50 p-10"
