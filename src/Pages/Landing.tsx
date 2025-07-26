@@ -53,21 +53,6 @@ const Landing = () => {
         <div className="flex justify-center mt-12">
           <GetStarted checkbox={check}/>
         </div>
-      {/* <motion.div className="bod m-4 overflow-hidden pr-10 text-white flex mt-50 p-15"
-        initial={{x: 100, opacity: 0}}
-        animate={{x: 0, opacity: 1}}
-        transition={{duration: 0.8, ease: 'easeOut'}}
-      >
-        <div className="w-[50%] gap-15 flex flex-col">
-          <h2 className="text-4xl font-black font-[helvetica] text-center underline text-red-500">That secret you've being Hiding</h2>
-          <p className="text-center text-3xl font-[oswald]">{definitions.speakUp}</p>
-        </div>
-        <div>
-          <img
-          className="object-cover w-150 h-90"
-          src={pics.img1} alt="secret" />
-        </div>
-      </motion.div> */}
       <motion.div 
         className="bod m-4 p-4 overflow-hidden text-white flex flex-col md:flex-row"
         initial={{x: 100, opacity: 0}}
@@ -90,21 +75,31 @@ const Landing = () => {
           />
         </div>
       </motion.div>
-      <motion.div className="bod m-3 text-white flex gap-10 mt-50 p-10"
-        initial={{x: 100, opacity: 0}}
-        animate={{x: 0, opacity: 1}}
-        transition={{duration: 0.8, ease: 'easeOut'}}      
-      >
-        <div className="w-[50%]">
-          <img
-          className="w-120"
-          src={pics.img2} alt="secret" />
-        </div>
-        <div className="gap-15 flex flex-col font-[oswald] text-3xl ">
-          <h2 className="text-4xl font-black text-center font-[helvetica] underline text-red-500">Worrying of Exposure??</h2>
-          <p className="text-center">{definitions.identity}</p>
-          <button onClick={handleClick} className="bg-[linear-gradient(to_right,_red,_blue)] text-white px-4 hover:scale-105 transition w-fit m-auto p-1 rounded cursor-pointer">Learn more</button>
-        </div>
+          <h2 className="text-2xl md:text-4xl font-black text-center font-['helvetica'] underline text-red-500 w-full md:w-auto">
+            Worrying of Exposure??
+          </h2>
+        <motion.div          
+          className="bod m-3 p-4 overflow-hidden text-white flex flex-col md:flex-row items-center"
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}      
+        >
+          <div className="w-full md:w-[50%] mt-4 md:mt-6 flex justify-center">
+            <img
+              className="max-w-full h-auto md:w-full object-cover"
+              src={pics.img2} 
+              alt="secret" 
+            />
+          </div>
+          <div className="w-full md:w-auto flex flex-col gap-4 md:gap-6 font-['oswald'] text-xl md:text-3xl mt-4 md:mt-0">
+            <p className="text-center">{definitions.identity}</p>
+            <button 
+              onClick={handleClick} 
+              className="bg-[linear-gradient(to_right,_red,_blue)] text-white px-4 hover:scale-105 transition w-fit mx-auto py-2 rounded cursor-pointer"
+            >
+              Learn more
+            </button>
+          </div>
       </motion.div>
       <div>
         <h1 className="text-red-500 text-4xl font-bold underline font-[sans-serif] text-center mt-12">HOW IT WORKS</h1>
