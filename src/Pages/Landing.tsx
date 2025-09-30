@@ -33,7 +33,7 @@ const Landing = () => {
         style={{
           scaleX: scrollYProgress, 
           position: "fixed",
-          top: 0,
+          top: 5,
           left: 0,
           right: 0,
           height: 5,

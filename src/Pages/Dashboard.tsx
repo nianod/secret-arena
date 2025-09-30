@@ -31,8 +31,8 @@ const Dashboard = () => {
         setRevealed(data as Post[])
         setLoading(false)
       } catch (err) {
-        console.error("There was an error: ", err)
-        setError("Failed!")
+        console.log("There was an error: ", err)
+        setError("Failed with error!")
         setLoading(false)
       }
     }
@@ -59,7 +59,7 @@ const Dashboard = () => {
         {loading ? (
           <p className="text-white flex justify-center text-xl">Loading Reveals...</p>
         ) : error ? (
-          <p>{error}</p>
+          <p className="text-red-500">{error}</p>
         ) : revealed.length === 0 ? (
           <p className="text-white flex justify-center text-xl">No Reveals Available.</p>
         ) : (
