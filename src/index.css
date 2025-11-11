@@ -2,7 +2,7 @@
 
 
 :root {
-  --mainbg: #090040;
+  --mainbg: linear-gradient(to bottom right, #111827, #1e3a8a);
   --shadow:
         0px -4px 10px rgba(255, 255, 255, 0.1),
         4px 0px 10px rgba(255, 255, 255, 0.1),
@@ -11,12 +11,15 @@
         -8px 0 15px -5px rgba(206, 206, 206, 0.7), 
         0 8px 15px -5px rgba(229, 229, 229, 0.7); 
 }
-body {
+/* body {
   background-color: var(--mainbg);
-}
+} */
 .bod {
   box-shadow: var(--shadow);
 }
 .box {
   box-shadow: var(--shadow2);
+}
+body{
+  background-image: linear-gradient(to bottom right, #111827, #1e3a8a);
 }
