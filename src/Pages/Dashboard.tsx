@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [revealed, setRevealed] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
-  const [openChat, setOpenChat] = useState<boolean>(false);
+  const [openChat, setOpenChat] = useState<string | null>(null);
 
   const fetchPosts = async () => {
     try {
@@ -122,7 +122,7 @@ const Dashboard = () => {
               {revealed.map((post) => (
                 <div
                   key={post.id}
-                  className="relative bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-4 hover:shadow-lg transition-all duration-200 group hover:border-gray-600"
+                  className="relative bg-gray-800 rounded-2xl shadow-sm border h-fit border-gray-700 p-4 hover:shadow-lg transition-all duration-200 group hover:border-gray-600"
                 >
                   <div className="pt-2">
                     <div className="flex items-center justify-between text-sm text-gray-400">
@@ -160,12 +160,12 @@ const Dashboard = () => {
 
                   <button
                     className="cursor-pointer absolute bottom-3 right-3 text-gray-400 hover:text-gray-200 transition-colors"
-                    onClick={() => setOpenChat((prev) => !prev)}
+                    onClick={() => setOpenChat(openChat === post.id ? null : post.id )}
                   >
                     <MessageCircle size={22} />
                   </button>
                   <CommentSection
-                    openChat={openChat}
+                    openChat={openChat === post.id}
                     setOpenChat={setOpenChat}
                   />
                 </div>

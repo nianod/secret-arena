@@ -24,7 +24,7 @@ const CommentSection: React.FC<ChatProps> = ({ openChat, setOpenChat }) => {
         />
         <button
           onClick={() => setOpenChat(false)}
-          className="ml-2 px-3 py-2 bg-blue-600 rounded-lg text-sm text-white hover:bg-blue-700"
+          className=" cursor-pointer ml-2 px-3 py-2 bg-blue-600 rounded-lg text-sm text-white hover:bg-blue-700"
         >
           Send
         </button>
