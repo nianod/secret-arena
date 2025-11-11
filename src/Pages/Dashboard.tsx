@@ -95,7 +95,7 @@ const Dashboard = () => {
               <p className="text-red-300 font-semibold text-lg">{error}</p>
               <button
                 onClick={fetchPosts}
-                className="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
+                className="cursor-pointer mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
               >
                 Try Again
               </button>

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { supabase } from "../Supabase/SupabaseClient";
 
 
 type CommentSectionProps = {
@@ -7,7 +8,7 @@ type CommentSectionProps = {
   setOpenChat: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const CommentSection: React.FC<CommentSectionProps> = ({ openChat, postId, setOpenChat }) => {
+const CommentSection: React.FC<CommentSectionProps> = ({ openChat, postId }) => {
 
   const [message, setMessage] = useState<string>("")
   const [loading, setLoading] = useState<boolean>(false)
@@ -19,6 +20,26 @@ const CommentSection: React.FC<CommentSectionProps> = ({ openChat, postId, setOp
     e.preventDefault()
     setLoading(true)
     setError("")
+
+    try {
+      const { data, error } = await supabase
+      .from('comments')
+      .insert([{content: message, post_id: postId}])
+      .select()
+      .single()
+
+      if(error) {
+        console.log('error uploading comment', error.message)
+        setError('error uploading comment. Try again')
+      } else {
+        console.log('success posting', data)
+        setMessage("")
+      }
+    } catch(err: any) {
+      setError("An unexpected error occurred")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
