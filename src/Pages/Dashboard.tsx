@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PostField from "../Components/PostField";
 import { supabase } from "../Supabase/SupabaseClient";
+import { MessageCircle } from "lucide-react";
 
 type Post = {
   id: string;
@@ -14,6 +15,7 @@ const Dashboard = () => {
   const [revealed, setRevealed] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
+  const [openChat, setOpenChat] = useState<boolean>(false)
 
   const fetchPosts = async () => {
     try {
@@ -40,19 +42,19 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 py-8">
-      {/* Header Section */}
+ 
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-4">
             VIBLY ANONYMOUS
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Share your thoughts anonymously and discover what others are thinking. 
-            Your identity remains hidden while your voice is heard.
+            Share your thoughts anonymously and discover what others are
+            thinking. Your identity remains hidden while your voice is heard.
           </p>
         </div>
 
-         <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-12">
           <div className="bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-700">
             <div className="flex items-center gap-6">
               <div className="text-center">
@@ -73,7 +75,6 @@ const Dashboard = () => {
           </div>
         </div>
 
- 
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
             Recent Reveals
@@ -106,7 +107,8 @@ const Dashboard = () => {
                 No reveals yet
               </h3>
               <p className="text-gray-400 mb-6 max-w-md mx-auto">
-                Be the first to share what's on your mind. Your secret is safe with us.
+                Be the first to share what's on your mind. Your secret is safe
+                with us.
               </p>
               <button
                 onClick={() => setShowPostField(true)}
@@ -120,7 +122,7 @@ const Dashboard = () => {
               {revealed.map((post) => (
                 <div
                   key={post.id}
-                  className="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-4 hover:shadow-lg transition-all duration-200 group hover:border-gray-600"
+                  className="relative bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-4 hover:shadow-lg transition-all duration-200 group hover:border-gray-600"
                 >
                   <div className="pt-2">
                     <div className="flex items-center justify-between text-sm text-gray-400">
@@ -134,26 +136,34 @@ const Dashboard = () => {
                       </div>
                       <span className="text-xs text-gray-300">
                         {post.created_at &&
-                          new Date(post.created_at).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
+                          new Date(post.created_at).toLocaleDateString(
+                            "en-US",
+                            {
+                              month: "short",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            }
+                          )}
                       </span>
                     </div>
                     <div className="mt-2 text-xs text-gray-500">
                       Names are anonymized for privacy
                     </div>
                   </div>
-                  <div className="border-gray-700  border-t mt-2">
+
+                  <div className="border-t border-gray-700 mt-2 pt-3">
                     <p className="text-gray-200 text-lg leading-relaxed line-clamp-4">
                       {post.description}
                     </p>
                   </div>
 
- 
-
+                  <button
+                    className="cursor-pointer absolute bottom-3 right-3 text-gray-400 hover:text-gray-200 transition-colors"
+                    onClick={() => setOpenChat(true)}
+                  >
+                    <MessageCircle size={22} />
+                  </button>
                 </div>
               ))}
             </div>
@@ -161,7 +171,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-       {showPostField && (
+      {showPostField && (
         <div className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4 backdrop-blur-sm">
           <div className="bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full mx-auto relative animate-in fade-in duration-200 border border-gray-700">
             <button
