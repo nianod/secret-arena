@@ -1,8 +1,8 @@
 import type { SetStateAction } from "react";
 
 type ChatProps = {
-  openChat: boolean;
-  setOpenChat: React.Dispatch<SetStateAction<boolean>>;
+  openChat: string | null;
+  setOpenChat: React.Dispatch<SetStateAction<string | null>>;
 }
 
 const CommentSection: React.FC<ChatProps> = ({ openChat, setOpenChat }) => {
@@ -23,7 +23,7 @@ const CommentSection: React.FC<ChatProps> = ({ openChat, setOpenChat }) => {
           className="flex-1 bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500"
         />
         <button
-          onClick={() => setOpenChat(false)}
+          onClick={() => setOpenChat(null)}
           className=" cursor-pointer ml-2 px-3 py-2 bg-blue-600 rounded-lg text-sm text-white hover:bg-blue-700"
         >
           Send
