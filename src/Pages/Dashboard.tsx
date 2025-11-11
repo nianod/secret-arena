@@ -165,7 +165,8 @@ const Dashboard = () => {
                     <MessageCircle size={22} />
                   </button>
                   <CommentSection
-                    openChat={openChat === post.id}
+                    openChat={openChat}
+                    postId={post.id}
                     setOpenChat={setOpenChat}
                   />
                 </div>

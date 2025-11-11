@@ -1,36 +1,65 @@
-import type { SetStateAction } from "react";
+import { useState } from "react"
 
-type ChatProps = {
+
+type CommentSectionProps = {
   openChat: string | null;
-  setOpenChat: React.Dispatch<SetStateAction<string | null>>;
-}
+  postId: string;
+  setOpenChat: React.Dispatch<React.SetStateAction<string | null>>;
+};
 
-const CommentSection: React.FC<ChatProps> = ({ openChat, setOpenChat }) => {
-  if (!openChat) return null;  
+const CommentSection: React.FC<CommentSectionProps> = ({ openChat, postId, setOpenChat }) => {
+
+  const [message, setMessage] = useState<string>("")
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>("")
+
+  if (openChat !== postId) return null; 
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError("")
+  }
 
   return (
     <div className="mt-3 bg-gray-700/50 rounded-xl p-3 border border-gray-600">
       <h3 className="text-sm text-gray-300 mb-2 font-semibold">Comments</h3>
+      <p className="text-gray-400 text-sm">No comments yet.</p>
 
-      <div className="space-y-2">
-        <p className="text-gray-400 text-sm">No comments yet.</p>
-      </div>
-
-      <div className="flex items-center mt-3">
+      <form className="flex items-center mt-3" onSubmit={submit}>
         <input
           type="text"
+          required
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           placeholder="Write a comment..."
           className="flex-1 bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500"
         />
         <button
-          onClick={() => setOpenChat(null)}
-          className=" cursor-pointer ml-2 px-3 py-2 bg-blue-600 rounded-lg text-sm text-white hover:bg-blue-700"
+          disabled={loading}
+          type="submit"
+          // onClick={() => setOpenChat(null)}
+          className={`cursor-pointer px-3 ml-2 py-2 rounded-xl font-bold text-white transition-all ${
+            loading
+              ? "cursor-not-allowed opacity-50 bg-blue-500"
+              : "bg-blue-600 hover:scale-105 hover:bg-blue-700"
+          }`}
         >
-          Send
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              Posting...
+            </span>
+          ) : (
+            "Send"
+          )}
         </button>
-      </div>
+      </form>
+      {error && (
+        <p className="text-center text-red-500 text-sm mb-2">{error}</p>
+      )}
     </div>
   );
 };
 
-export default CommentSection;
+export default CommentSection
