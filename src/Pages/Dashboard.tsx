@@ -122,7 +122,7 @@ const Dashboard = () => {
                   key={post.id}
                   className="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-4 hover:shadow-lg transition-all duration-200 group hover:border-gray-600"
                 >
-                  <div className="border-b border-gray-700 pt-2">
+                  <div className="pt-2">
                     <div className="flex items-center justify-between text-sm text-gray-400">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
@@ -146,7 +146,7 @@ const Dashboard = () => {
                       Names are anonymized for privacy
                     </div>
                   </div>
-                  <div className="mt-4">
+                  <div className="border-gray-700  border-t mt-2">
                     <p className="text-gray-200 text-lg leading-relaxed line-clamp-4">
                       {post.description}
                     </p>
@@ -162,14 +162,14 @@ const Dashboard = () => {
       </div>
 
        {showPostField && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4 backdrop-blur-sm">
           <div className="bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full mx-auto relative animate-in fade-in duration-200 border border-gray-700">
             <button
               onClick={() => setShowPostField(false)}
               className="absolute top-4 right-4 w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center text-gray-300 hover:text-white transition-colors z-10"
               title="Close"
             >
-              <span className="text-lg font-semibold">×</span>
+              <span className="cursor-pointer text-lg font-semibold">×</span>
             </button>
             <PostField
               closeModal={() => setShowPostField(false)}
