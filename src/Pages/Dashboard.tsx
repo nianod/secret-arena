@@ -119,7 +119,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {revealed.map((post, index) => (
+              {revealed.map((post) => (
                 <div
                   key={post.id}
                   className="relative bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-4 hover:shadow-lg transition-all duration-200 group hover:border-gray-600"

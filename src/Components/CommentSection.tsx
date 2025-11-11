@@ -3,10 +3,10 @@ import type { SetStateAction } from "react";
 type ChatProps = {
   openChat: boolean;
   setOpenChat: React.Dispatch<SetStateAction<boolean>>;
-};
+}
 
 const CommentSection: React.FC<ChatProps> = ({ openChat, setOpenChat }) => {
-  if (!openChat) return null; // don’t render when closed
+  if (!openChat) return null;  
 
   return (
     <div className="mt-3 bg-gray-700/50 rounded-xl p-3 border border-gray-600">
