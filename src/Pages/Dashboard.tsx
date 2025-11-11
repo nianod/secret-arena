@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PostField from "../Components/PostField";
 import { supabase } from "../Supabase/SupabaseClient";
 import { MessageCircle } from "lucide-react";
+import CommentSection from "../Components/CommentSection";
 
 type Post = {
   id: string;
@@ -15,7 +16,7 @@ const Dashboard = () => {
   const [revealed, setRevealed] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
-  const [openChat, setOpenChat] = useState<boolean>(false)
+  const [openChat, setOpenChat] = useState<boolean>(false);
 
   const fetchPosts = async () => {
     try {
@@ -42,7 +43,6 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 py-8">
- 
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-4">
@@ -119,7 +119,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {revealed.map((post) => (
+              {revealed.map((post, index) => (
                 <div
                   key={post.id}
                   className="relative bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-4 hover:shadow-lg transition-all duration-200 group hover:border-gray-600"
@@ -160,10 +160,14 @@ const Dashboard = () => {
 
                   <button
                     className="cursor-pointer absolute bottom-3 right-3 text-gray-400 hover:text-gray-200 transition-colors"
-                    onClick={() => setOpenChat(true)}
+                    onClick={() => setOpenChat((prev) => !prev)}
                   >
                     <MessageCircle size={22} />
                   </button>
+                  <CommentSection
+                    openChat={openChat}
+                    setOpenChat={setOpenChat}
+                  />
                 </div>
               ))}
             </div>
@@ -188,7 +192,7 @@ const Dashboard = () => {
           </div>
         </div>
       )}
-    </div>
+     </div>
   );
 };
 
