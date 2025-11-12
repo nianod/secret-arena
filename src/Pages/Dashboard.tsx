@@ -17,6 +17,24 @@ const Dashboard = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   const [openChat, setOpenChat] = useState<string | null>(null);
+  const [commentsCountMap, setCommentsCountMap] = useState<
+    Record<string, number>
+  >({});
+
+  const fetchCommentsCountForPost = async (postId: string) => {
+    const { count, error } = await supabase
+      .from("comments")
+      .select("*", { head: true, count: "exact" })
+      .eq("post_id", postId);
+
+    if (!error) {
+      setCommentsCountMap((prev) => ({ ...prev, [postId]: count || 0 }));
+    }
+  };
+
+  useEffect(() => {
+    revealed.forEach((post) => fetchCommentsCountForPost(post.id));
+  }, [revealed]);
 
   const fetchPosts = async () => {
     try {
@@ -158,18 +176,21 @@ const Dashboard = () => {
                     </p>
                   </div>
                   <div className="mt-2 gap-2 justify-end flex items-center bottom-1 right-3">
-                    <span className="italic text-gray-400">3 comments</span>
-                  <button
-                    className="cursor-pointer  text-gray-400 hover:text-gray-200 transition-colors"
-                    onClick={() => setOpenChat(openChat === post.id ? null : post.id )}
-                  >
-                    <MessageCircle size={22} />
-                  </button>
+                    <span className="italic text-gray-400">{commentsCountMap[post.id] || 0} comments</span>
+                    <button
+                      className="cursor-pointer  text-gray-400 hover:text-gray-200 transition-colors"
+                      onClick={() =>
+                        setOpenChat(openChat === post.id ? null : post.id)
+                      }
+                    >
+                      <MessageCircle size={22} />
+                    </button>
                   </div>
                   <CommentSection
                     openChat={openChat}
                     postId={post.id}
                     setOpenChat={setOpenChat}
+                    commentCount={commentsCountMap[post.id] || 0}
                   />
                 </div>
               ))}
@@ -179,7 +200,7 @@ const Dashboard = () => {
       </div>
 
       {showPostField && (
-        <div className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50 p-4">
           <div className="bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full mx-auto relative animate-in fade-in duration-200 border border-gray-700">
             <button
               onClick={() => setShowPostField(false)}
@@ -195,7 +216,7 @@ const Dashboard = () => {
           </div>
         </div>
       )}
-     </div>
+    </div>
   );
 };
 

@@ -4,13 +4,10 @@ type CommentSectionProps = {
   openChat: string | null;
   postId: string;
   setOpenChat: React.Dispatch<React.SetStateAction<string | null>>;
+  commentCount: number
 };
 
-const CommentSection: React.FC<CommentSectionProps> = ({
-  openChat,
-  postId,
- 
-}) => {
+const CommentSection: React.FC<CommentSectionProps> = ({ openChat,postId, commentCount}) => {
   const [message, setMessage] = useState("");
   const { comments, loading, error, addComment } = useFetchComments(openChat === postId ? postId : null, openChat);
 
@@ -26,7 +23,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({
 
   return (
     <div className="mt-3 bg-gray-700/50 rounded-xl p-3 border border-gray-600">
-      <h3 className="text-sm text-gray-300 mb-2 font-semibold">Comments</h3>
+      <h3 className="text-sm text-gray-300 mb-2 font-semibold">Comments ({commentCount})</h3>
 
       {loading && <p className="text-gray-400 text-sm">Loading comments...</p>}
       {!loading && comments.length === 0 && (
