@@ -28,7 +28,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ openChat, postId, comme
 
   return (
     <div className="mt-3 bg-gray-700/50 rounded-xl p-3 border border-gray-600">
-      <h3 className="text-sm text-gray-300 mb-2 font-semibold">Comments ({commentCount})</h3>
+      <p className="text-sm text-gray-300 mb-2 font-semibold">Comments ({commentCount}) <span className="text-xs italic text-gray-500">You cannot see who commented</span></p>
 
       {loadingComments && <p className="text-gray-400 text-sm">Loading comments...</p>}
       {!loadingComments && comments.length === 0 && (
@@ -38,7 +38,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ openChat, postId, comme
       <div className="max-h-48 overflow-y-auto mb-3 space-y-2">
         {comments.map((comment: any) => (
           <p key={comment.id} className="text-gray-300 text-sm">
-            {comment.content}
+            {comment.content} 
           </p>
         ))}
       </div>
