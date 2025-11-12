@@ -157,13 +157,15 @@ const Dashboard = () => {
                       {post.description}
                     </p>
                   </div>
-
+                  <div className="mt-2 gap-2 justify-end flex items-center bottom-1 right-3">
+                    <span className="italic text-gray-400">3 comments</span>
                   <button
-                    className="cursor-pointer absolute bottom-3 right-3 text-gray-400 hover:text-gray-200 transition-colors"
+                    className="cursor-pointer  text-gray-400 hover:text-gray-200 transition-colors"
                     onClick={() => setOpenChat(openChat === post.id ? null : post.id )}
                   >
                     <MessageCircle size={22} />
                   </button>
+                  </div>
                   <CommentSection
                     openChat={openChat}
                     postId={post.id}

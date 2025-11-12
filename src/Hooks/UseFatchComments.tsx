@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../Supabase/SupabaseClient";
 
-const useFetchComments = (postId: string, openChat: string | null) => {
-  const [message, setMessage] = useState("");
+const useFetchComments = (postId: string | null, openChat: string | null) => {
   const [comments, setComments] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-   const fetchComments = async () => {
+  const fetchComments = async () => {
+    if (!postId) return;
+    setLoading(true);
+    setError("");
     try {
-      setLoading(true);
       const { data, error } = await supabase
         .from("comments")
         .select("*")
@@ -19,58 +20,40 @@ const useFetchComments = (postId: string, openChat: string | null) => {
       if (error) throw error;
       setComments(data || []);
     } catch (err: any) {
-      console.error("Error fetching comments:", err.message);
       setError("Failed to fetch comments");
     } finally {
       setLoading(false);
     }
   };
 
-   useEffect(() => {
-    if (openChat === postId) fetchComments();
+  useEffect(() => {
+    if (openChat === postId) {
+      fetchComments();
+    }
   }, [openChat, postId]);
 
-   const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!message.trim()) return;
-
-    setLoading(true);
-    setError("");
+  const addComment = async (content: string) => {
+    if (!postId || !content.trim()) return;
 
     try {
-      const user = (await supabase.auth.getUser()).data.user;
-
+      setLoading(true);
       const { data, error } = await supabase
         .from("comments")
-        .insert([
-          {
-            content: message,
-            post_id: postId,
-            user_id: user?.id || null,
-          },
-        ])
+        .insert([{ content, post_id: postId }])
         .select();
 
       if (error) throw error;
-
       setComments((prev) => [data[0], ...prev]);
-      setMessage("");
+      return true;
     } catch (err: any) {
-      console.error("Error posting comment:", err.message);
       setError("Error uploading comment");
+      return false;
     } finally {
       setLoading(false);
     }
   };
 
-  return {
-    message,
-    setMessage,
-    comments,
-    loading,
-    error,
-    submit,
-  };
+  return { comments, loading, error, addComment };
 };
 
 export default useFetchComments;

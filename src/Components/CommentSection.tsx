@@ -1,5 +1,4 @@
-
-import React from "react";
+ import React, { useState } from "react";
 import useFetchComments from "../Hooks/UseFatchComments";
 type CommentSectionProps = {
   openChat: string | null;
@@ -7,34 +6,42 @@ type CommentSectionProps = {
   setOpenChat: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const CommentSection: React.FC<CommentSectionProps> = ({ openChat, postId }) => {
-  const { message, setMessage, comments, loading, error, submit } = useFetchComments(postId, openChat);
+const CommentSection: React.FC<CommentSectionProps> = ({
+  openChat,
+  postId,
+ 
+}) => {
+  const [message, setMessage] = useState("");
+  const { comments, loading, error, addComment } = useFetchComments(openChat === postId ? postId : null, openChat);
 
   if (openChat !== postId) return null;
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!message.trim()) return;
+
+    const success = await addComment(message);
+    if (success) setMessage("");
+  };
 
   return (
     <div className="mt-3 bg-gray-700/50 rounded-xl p-3 border border-gray-600">
       <h3 className="text-sm text-gray-300 mb-2 font-semibold">Comments</h3>
 
-      
-      {loading ? (
-        <p className="text-gray-400 text-sm">Loading comments...</p>
-      ) : comments.length === 0 ? (
+      {loading && <p className="text-gray-400 text-sm">Loading comments...</p>}
+      {!loading && comments.length === 0 && (
         <p className="text-gray-400 text-sm">No comments yet.</p>
-      ) : (
-        <ul className="space-y-2 mb-3">
-          {comments.map((comment:any) => (
-            <li
-              key={comment.id}
-              className="bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm text-gray-200"
-            >
-              {comment.content}
-            </li>
-          ))}
-        </ul>
       )}
- 
-      <form className="flex items-center mt-3" onSubmit={submit}>
+
+      <div className="max-h-48 overflow-y-auto mb-3 space-y-2">
+        {comments.map((comment: any) => (
+          <p key={comment.id} className="text-gray-300 text-sm">
+            {comment.content}
+          </p>
+        ))}
+      </div>
+
+      <form className="flex items-center" onSubmit={submit}>
         <input
           type="text"
           required
@@ -52,11 +59,22 @@ const CommentSection: React.FC<CommentSectionProps> = ({ openChat, postId }) => 
               : "bg-blue-600 hover:scale-105 hover:bg-blue-700"
           }`}
         >
-          {loading ? "Posting..." : "Send"}
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              Posting...
+            </span>
+          ) : (
+            "Send"
+          )}
         </button>
       </form>
 
-      {error && <p className="text-center text-red-500 text-sm mt-2">{error}</p>}
+      {error && (
+        <p className="text-center text-red-500 text-sm mt-2">
+          {error}
+        </p>
+      )}
     </div>
   );
 };
